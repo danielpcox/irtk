@@ -253,4 +253,4 @@ pytest irtk/tests/ -x -q     # quick smoke test, stop on first failure
 
 ## License
 
-MIT
+Apache 2.0
