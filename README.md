@@ -2,6 +2,8 @@
 
 A comprehensive mechanistic interpretability library built on [JAX](https://github.com/jax-ml/jax) and [Equinox](https://github.com/patrick-kidger/equinox). Originally inspired by [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens), IRTK provides 170+ analysis modules for understanding transformer internals — from basic logit lenses and activation patching to circuit discovery, sparse autoencoders, causal scrubbing, and representation engineering.
 
+Initially vibe-coded by Opus, so YMMV. PRs welcome.
+
 ## Installation
 
 ```bash
