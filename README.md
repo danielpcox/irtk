@@ -242,7 +242,7 @@ IRTK's 170+ modules cover the full spectrum of mechanistic interpretability rese
 
 The `notebooks/` directory contains 350+ Jupyter notebooks with worked examples and API demos covering every module.
 
-**Start here:** `09_getting_started.ipynb` — a complete mechinterp investigation walkthrough from loading a model through logit lens, activation patching, and circuit analysis.
+**Start here:** `00_getting_started.ipynb` — a complete mechinterp investigation walkthrough from loading a model through logit lens, activation patching, and circuit analysis.
 
 To run notebooks:
 
@@ -261,16 +261,16 @@ uv run jupyter lab notebooks/
 
 | Notebook | Topic |
 |---|---|
-| `00_api_cheatsheet` | Quick reference for every module |
-| `09_getting_started` | End-to-end mechinterp workflow |
-| `01_transformer_anatomy` | Understanding transformer components |
-| `02_logit_lens` | Logit lens and tuned lens |
-| `03_ioi_patching` | Activation patching on IOI |
-| `04_linear_probes` | Training linear probes |
-| `05_sparse_autoencoders` | SAE feature discovery |
-| `06_circuit_analysis` | OV/QK circuits and composition |
-| `07_gradient_interpretability` | Gradient-based attribution |
-| `08_automatic_circuit_discovery` | ACDC-style circuit finding |
+| `00_getting_started` | End-to-end mechinterp workflow |
+| `01_api_cheatsheet` | Quick reference for every module |
+| `02_transformer_anatomy` | Understanding transformer components |
+| `03_logit_lens` | Logit lens and tuned lens |
+| `04_ioi_patching` | Activation patching on IOI |
+| `05_linear_probes` | Training linear probes |
+| `06_sparse_autoencoders` | SAE feature discovery |
+| `07_circuit_analysis` | OV/QK circuits and composition |
+| `08_gradient_interpretability` | Gradient-based attribution |
+| `09_automatic_circuit_discovery` | ACDC-style circuit finding |
 
 The remaining 340+ notebooks cover individual modules in depth — each module in the [module reference](#module-reference) above has a corresponding notebook.
 

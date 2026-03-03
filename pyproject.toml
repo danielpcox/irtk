@@ -25,3 +25,8 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["irtk/tests"]
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.5.5",
+]
