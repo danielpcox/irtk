@@ -7,16 +7,14 @@ Initially vibe-coded by Opus, so YMMV. PRs welcome.
 ## Installation
 
 ```bash
-pip install -e .
+git clone git@github.com:danielpcox/irtk.git
+cd irtk
+uv sync --extra dev
 ```
 
-Or with development dependencies (pytest, torch for weight loading):
+This installs all core dependencies (JAX, Equinox, Transformers, NumPy, Optax, Matplotlib) plus dev dependencies (pytest, torch for HuggingFace weight loading).
 
-```bash
-pip install -e ".[dev]"
-```
-
-**Requirements:** Python 3.10+, JAX 0.4.20+, Equinox 0.11.0+, Transformers 4.35.0+, NumPy 1.24.0+.
+**Requirements:** Python 3.10+, [uv](https://docs.astral.sh/uv/).
 
 ## Quick start
 
@@ -247,8 +245,8 @@ The `notebooks/` directory contains 350+ Jupyter notebooks with worked examples 
 ## Testing
 
 ```bash
-pytest                       # run full suite (4000+ tests)
-pytest irtk/tests/ -x -q     # quick smoke test, stop on first failure
+uv run pytest                       # run full suite (4000+ tests)
+uv run pytest irtk/tests/ -x -q     # quick smoke test, stop on first failure
 ```
 
 ## License
