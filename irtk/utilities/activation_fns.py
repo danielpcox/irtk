@@ -16,10 +16,16 @@ def solu(x: jnp.ndarray) -> jnp.ndarray:
     return x * jax.nn.softmax(x, axis=-1)
 
 
+def relu_squared(x: jnp.ndarray) -> jnp.ndarray:
+    """ReLU² activation: relu(x)². Promotes sparsity (NanoGPT Speedrun)."""
+    return jax.nn.relu(x) ** 2
+
+
 ACTIVATION_FN_DICT: dict = {
     "gelu": jax.nn.gelu,
     "gelu_new": gelu_new,
     "relu": jax.nn.relu,
+    "relu_squared": relu_squared,
     "silu": jax.nn.silu,
     "solu": solu,
 }
