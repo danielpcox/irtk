@@ -13,26 +13,33 @@ import equinox as eqx
 from irtk.hooked_transformer_config import HookedTransformerConfig
 
 
-def load_pretrained_weights(model, cfg: HookedTransformerConfig, model_name: str):
+def load_pretrained_weights(model, cfg: HookedTransformerConfig, model_name: str, **hf_kwargs):
     """Load pretrained weights into a HookedTransformer.
 
     Dispatches to architecture-specific loaders.
+
+    Args:
+        model: HookedTransformer instance to populate.
+        cfg: Model configuration.
+        model_name: HuggingFace model name.
+        **hf_kwargs: Additional keyword arguments passed to
+            AutoModelForCausalLM.from_pretrained (e.g., revision).
     """
     arch = cfg.original_architecture
 
     if arch == "gpt2":
-        return _load_gpt2(model, cfg, model_name)
+        return _load_gpt2(model, cfg, model_name, **hf_kwargs)
     elif arch == "gpt_neo":
-        return _load_gpt_neo(model, cfg, model_name)
+        return _load_gpt_neo(model, cfg, model_name, **hf_kwargs)
     elif arch == "gpt_neox":
-        return _load_gpt_neox(model, cfg, model_name)
+        return _load_gpt_neox(model, cfg, model_name, **hf_kwargs)
     elif arch in ("llama", "mistral"):
-        return _load_llama(model, cfg, model_name)
+        return _load_llama(model, cfg, model_name, **hf_kwargs)
     else:
         raise ValueError(f"No weight loader for architecture: {arch}")
 
 
-def _load_gpt2(model, cfg, model_name: str):
+def _load_gpt2(model, cfg, model_name: str, **hf_kwargs):
     """Load GPT-2 weights from HuggingFace.
 
     GPT-2 has Flax support, but we use PyTorch for consistency across all models.
@@ -40,7 +47,7 @@ def _load_gpt2(model, cfg, model_name: str):
     import torch
     from transformers import AutoModelForCausalLM
 
-    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
+    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32, **hf_kwargs)
     sd = hf_model.state_dict()
 
     def to_jax(key):
@@ -130,12 +137,12 @@ def _load_gpt2(model, cfg, model_name: str):
     return model
 
 
-def _load_gpt_neo(model, cfg, model_name: str):
+def _load_gpt_neo(model, cfg, model_name: str, **hf_kwargs):
     """Load GPT-Neo weights from HuggingFace."""
     import torch
     from transformers import AutoModelForCausalLM
 
-    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
+    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32, **hf_kwargs)
     sd = hf_model.state_dict()
 
     def to_jax(key):
@@ -219,12 +226,12 @@ def _load_gpt_neo(model, cfg, model_name: str):
     return model
 
 
-def _load_gpt_neox(model, cfg, model_name: str):
+def _load_gpt_neox(model, cfg, model_name: str, **hf_kwargs):
     """Load GPT-NeoX (Pythia) weights from HuggingFace."""
     import torch
     from transformers import AutoModelForCausalLM
 
-    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
+    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32, **hf_kwargs)
     sd = hf_model.state_dict()
 
     def to_jax(key):
@@ -301,12 +308,12 @@ def _load_gpt_neox(model, cfg, model_name: str):
     return model
 
 
-def _load_llama(model, cfg, model_name: str):
+def _load_llama(model, cfg, model_name: str, **hf_kwargs):
     """Load LLaMA/Mistral weights from HuggingFace."""
     import torch
     from transformers import AutoModelForCausalLM
 
-    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32)
+    hf_model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float32, **hf_kwargs)
     sd = hf_model.state_dict()
 
     def to_jax(key):
