@@ -3,10 +3,19 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "irtk"
+name = "irtk-jax"
 version = "0.1.0"
 description = "IRTK: Interpretability Research Toolkit — mechanistic interpretability with JAX and Equinox"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [{name = "Daniel Cox"}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+]
 dependencies = [
     "jax>=0.4.20",
     "jaxlib>=0.4.20",
@@ -17,16 +26,35 @@ dependencies = [
     "matplotlib>=3.7.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/danielpcox/irtk"
+Repository = "https://github.com/danielpcox/irtk"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0",
     "torch>=2.0",
 ]
+mps = [
+    "jax-mps",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["irtk"]
+exclude = ["irtk/tests"]
+
+[tool.hatch.build.targets.sdist]
+exclude = ["notebooks", "irtk/tests"]
 
 [tool.pytest.ini_options]
 testpaths = ["irtk/tests"]
 
+[tool.uv.sources]
+jax-mps = { path = "../jax-mps", editable = true }
+
 [dependency-groups]
 dev = [
+    "jax-mps",
     "jupyterlab>=4.5.5",
+    "pytest-xdist>=3.8.0",
 ]
