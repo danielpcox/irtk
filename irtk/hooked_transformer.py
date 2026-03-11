@@ -177,6 +177,8 @@ class HookedTransformer(eqx.Module):
 
         Args:
             model_name: Model name or alias (e.g., "gpt2", "gpt2-small", "pythia-70m").
+            **kwargs: Additional keyword arguments passed to the HuggingFace loader
+                (e.g., revision="step1000" for loading specific checkpoints).
 
         Returns:
             HookedTransformer with pretrained weights.
@@ -188,5 +190,5 @@ class HookedTransformer(eqx.Module):
         official_name = get_official_model_name(model_name)
         cfg = convert_hf_config(official_name)
         model = HookedTransformer(cfg)
-        model = load_pretrained_weights(model, cfg, official_name)
+        model = load_pretrained_weights(model, cfg, official_name, **kwargs)
         return model
