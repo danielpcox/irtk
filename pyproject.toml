@@ -35,10 +35,6 @@ dev = [
     "pytest>=7.0",
     "torch>=2.0",
 ]
-mps = [
-    "jax-mps",
-]
-
 [tool.hatch.build.targets.wheel]
 packages = ["irtk"]
 exclude = ["irtk/tests"]
@@ -49,12 +45,8 @@ exclude = ["notebooks", "irtk/tests"]
 [tool.pytest.ini_options]
 testpaths = ["irtk/tests"]
 
-[tool.uv.sources]
-jax-mps = { path = "../jax-mps", editable = true }
-
 [dependency-groups]
 dev = [
-    "jax-mps",
     "jupyterlab>=4.5.5",
     "pytest-timeout>=2.2.0",
     "pytest-xdist>=3.8.0",
