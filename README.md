@@ -7,14 +7,24 @@ Initially vibe-coded by Opus, so YMMV. PRs welcome.
 ## Installation
 
 ```bash
+pip install irtk-jax
+```
+
+For Apple Silicon GPU acceleration via [jax-mps](https://github.com/danielpcox/jax-mps):
+
+```bash
+pip install irtk-jax[mps]
+```
+
+### Development setup
+
+```bash
 git clone git@github.com:danielpcox/irtk.git
 cd irtk
 uv sync --extra dev
 ```
 
-This installs all core dependencies (JAX, Equinox, Transformers, NumPy, Optax, Matplotlib) plus dev dependencies (pytest, torch for HuggingFace weight loading).
-
-**Requirements:** Python 3.10+, [uv](https://docs.astral.sh/uv/).
+**Requirements:** Python 3.11+.
 
 ## Quick start
 
