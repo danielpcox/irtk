@@ -23,7 +23,7 @@ jobs:
         run: uv python install ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: uv sync --extra dev
+        run: uv sync --extra dev --no-dev
 
       - name: Run tests
         run: uv run pytest irtk/tests/ -x -q --timeout=60
