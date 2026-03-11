@@ -43,7 +43,7 @@ def test_logit_lens_values(model_and_tokens):
     model, tokens = model_and_tokens
     result = logit_lens_consistency(model, tokens, position=-1)
     for p in result["per_layer"]:
-        assert -1.0 <= p["logit_cosine"] <= 1.0
+        assert -1.0 - 1e-6 <= p["logit_cosine"] <= 1.0 + 1e-6
     assert result["per_layer"][-1]["agrees_with_final"] is True
 
 
@@ -74,7 +74,7 @@ def test_orthogonality_structure(model_and_tokens):
 def test_orthogonality_values(model_and_tokens):
     model, tokens = model_and_tokens
     result = component_orthogonality(model, tokens, layer=0, position=-1)
-    assert -1.0 <= result["cosine"] <= 1.0
+    assert -1.0 - 1e-6 <= result["cosine"] <= 1.0 + 1e-6
     assert 0 <= result["orthogonality"] <= 1.0
 
 

@@ -10,12 +10,6 @@ Initially vibe-coded by Opus, so YMMV. PRs welcome.
 pip install irtk-jax
 ```
 
-For Apple Silicon GPU acceleration via [jax-mps](https://github.com/danielpcox/jax-mps):
-
-```bash
-pip install irtk-jax[mps]
-```
-
 ### Development setup
 
 ```bash
